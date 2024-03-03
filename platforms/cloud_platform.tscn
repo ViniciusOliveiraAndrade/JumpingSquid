@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdr50pe3padqg"]
+
+[ext_resource type="Script" path="res://scripts/cloud_platform.gd" id="1_6ls2m"]
+[ext_resource type="Texture2D" uid="uid://b1lexdsrgv41m" path="res://assets/Tiles/tile_0153.png" id="1_13ri4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgdti"]
+size = Vector2(36, 14)
+
+[node name="Cloud_Platform" type="StaticBody2D" groups=["cloud", "platform"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_6ls2m")
+jump_force = 0.7
+
+[node name="Left_Tile" type="Sprite2D" parent="."]
+position = Vector2(-9, -5)
+texture = ExtResource("1_13ri4")
+
+[node name="Right_Tile" type="Sprite2D" parent="."]
+position = Vector2(9, -5)
+texture = ExtResource("1_13ri4")
+flip_h = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_rgdti")
+one_way_collision = true

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwqhqblneib4e"]
+
+[ext_resource type="Texture2D" uid="uid://di57a3u1rg1hh" path="res://assets/Tiles/tile_0001.png" id="1_f0tfw"]
+[ext_resource type="Script" path="res://scripts/grass_platform.gd" id="1_xai0a"]
+[ext_resource type="Texture2D" uid="uid://dltbv0ykypchr" path="res://assets/Tiles/tile_0003.png" id="2_jrtv2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mj031"]
+size = Vector2(36, 18)
+
+[node name="Grass_Platform" type="StaticBody2D" groups=["grass", "platform"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_xai0a")
+jump_force = 1.0
+
+[node name="Left_Tile" type="Sprite2D" parent="."]
+position = Vector2(-9, -9)
+texture = ExtResource("1_f0tfw")
+
+[node name="Right_Tile" type="Sprite2D" parent="."]
+position = Vector2(9, -9)
+texture = ExtResource("2_jrtv2")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_mj031")
+one_way_collision = true

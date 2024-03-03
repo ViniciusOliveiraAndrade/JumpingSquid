@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://dauolnmr8234r"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_bpsrc"]
+[ext_resource type="Texture2D" uid="uid://bn74f84gk8tuf" path="res://assets/Tiles/Characters/tile_0001.png" id="1_kr663"]
+[ext_resource type="Texture2D" uid="uid://bpfpwqiv776k" path="res://assets/Tiles/Characters/tile_0000.png" id="2_xhhnn"]
+[ext_resource type="AudioStream" uid="uid://cdr240bnd02fy" path="res://sounds/jump_sound.wav" id="4_v11ar"]
+[ext_resource type="AudioStream" uid="uid://qc54dsdxfrma" path="res://sounds/cloud_platform.wav" id="5_6lner"]
+[ext_resource type="AudioStream" uid="uid://pxpm8ctth2al" path="res://sounds/Spring_sound.wav" id="6_44uat"]
+[ext_resource type="AudioStream" uid="uid://c66hectg7tbio" path="res://sounds/enemy_death.wav" id="7_fo6h4"]
+[ext_resource type="AudioStream" uid="uid://cw4tvfnyh22mt" path="res://sounds/death.wav" id="8_sv6n1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hxgr3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kr663")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xhhnn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1as0"]
+size = Vector2(14, 22.5)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 6
+script = ExtResource("1_bpsrc")
+
+[node name="Animator" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_hxgr3")
+animation = &"falling"
+autoplay = "idle"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11.75)
+shape = SubResource("RectangleShape2D_o1as0")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Grass_Jump_fx" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_v11ar")
+volume_db = -15.0
+
+[node name="Cloud_Jump_fx" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_6lner")
+volume_db = -15.0
+
+[node name="Spring_Jump_fx" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_44uat")
+volume_db = -10.0
+
+[node name="Enemy_Jump_fx" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("7_fo6h4")
+volume_db = -15.0
+
+[node name="Death_fx" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_sv6n1")
+volume_db = -5.0

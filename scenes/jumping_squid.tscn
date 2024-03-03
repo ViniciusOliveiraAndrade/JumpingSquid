@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=3 uid="uid://dsa2f87clqneu"]
+
+[ext_resource type="PackedScene" uid="uid://dauolnmr8234r" path="res://players/green_player.tscn" id="1_6em2y"]
+[ext_resource type="Script" path="res://scripts/game_logic.gd" id="1_c5gy1"]
+[ext_resource type="PackedScene" uid="uid://dwqhqblneib4e" path="res://platforms/grass_platform.tscn" id="2_pdjpt"]
+[ext_resource type="PackedScene" uid="uid://dtwtvirw2568o" path="res://platforms/spring_platform.tscn" id="3_nkvbi"]
+[ext_resource type="PackedScene" uid="uid://bdr50pe3padqg" path="res://platforms/cloud_platform.tscn" id="4_3wysa"]
+[ext_resource type="PackedScene" uid="uid://fpya2vs5r3p" path="res://scenes/bg_animated.tscn" id="6_3qfo7"]
+[ext_resource type="FontFile" uid="uid://dnstvkrrqm0sh" path="res://fonts/Kenney Pixel.ttf" id="6_b0b2p"]
+[ext_resource type="PackedScene" uid="uid://bxxwcq5rrsk8t" path="res://actors/enemy.tscn" id="7_2abwd"]
+[ext_resource type="AudioStream" uid="uid://cak8rhpj7sxi8" path="res://sounds/bg_sound_loop.mp3" id="9_eeb5y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjrkr"]
+size = Vector2(1495, 20)
+
+[sub_resource type="FontVariation" id="FontVariation_3ljc3"]
+base_font = ExtResource("6_b0b2p")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff715"]
+size = Vector2(90, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eg5i7"]
+size = Vector2(90, 320)
+
+[node name="Jumping_Squid" type="Node2D"]
+script = ExtResource("1_c5gy1")
+platform_scene = Array[PackedScene]([ExtResource("2_pdjpt"), ExtResource("3_nkvbi"), ExtResource("4_3wysa"), ExtResource("7_2abwd")])
+
+[node name="Bg" parent="." instance=ExtResource("6_3qfo7")]
+
+[node name="Platform_Container" type="Node2D" parent="."]
+
+[node name="Grass_Platform" parent="Platform_Container" instance=ExtResource("2_pdjpt")]
+position = Vector2(90, 300)
+
+[node name="Player" parent="." instance=ExtResource("1_6em2y")]
+position = Vector2(90, 180)
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(90, 160)
+
+[node name="Platform_Cleaner" type="Area2D" parent="Camera"]
+collision_layer = 0
+collision_mask = 7
+
+[node name="Collision" type="CollisionShape2D" parent="Camera/Platform_Cleaner"]
+position = Vector2(39.5, 180)
+shape = SubResource("RectangleShape2D_xjrkr")
+
+[node name="Score" type="Label" parent="Camera"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = -157.0
+offset_right = 41.0
+offset_bottom = -131.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = SubResource("FontVariation_3ljc3")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="CanvasLayer" parent="."]
+
+[node name="BTN_Left" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(45, 160)
+shape = SubResource("RectangleShape2D_ff715")
+action = "ui_left"
+
+[node name="BTN_Right" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(135, 160)
+shape = SubResource("RectangleShape2D_eg5i7")
+action = "ui_right"
+
+[node name="Bg_Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_eeb5y")
+volume_db = -20.0
+autoplay = true
+
+[connection signal="body_entered" from="Camera/Platform_Cleaner" to="." method="_on_platform_cleaner_body_entered"]

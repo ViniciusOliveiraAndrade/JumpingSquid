@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://clun6tsmicvd0"]
+
+[ext_resource type="Script" path="res://scripts/fake_player.gd" id="1_7y0pa"]
+[ext_resource type="Texture2D" uid="uid://bn74f84gk8tuf" path="res://assets/Tiles/Characters/tile_0001.png" id="2_fe42r"]
+[ext_resource type="Texture2D" uid="uid://bpfpwqiv776k" path="res://assets/Tiles/Characters/tile_0000.png" id="3_ma73u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hxgr3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fe42r")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ma73u")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1as0"]
+size = Vector2(14, 22.5)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 6
+script = ExtResource("1_7y0pa")
+
+[node name="Animator" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_hxgr3")
+animation = &"falling"
+autoplay = "idle"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11.75)
+shape = SubResource("RectangleShape2D_o1as0")

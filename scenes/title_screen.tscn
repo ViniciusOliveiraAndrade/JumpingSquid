@@ -1,0 +1,94 @@
+[gd_scene load_steps=15 format=3 uid="uid://c6rqobtgnqdrv"]
+
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_1vndc"]
+[ext_resource type="Texture2D" uid="uid://dmw666qy0h2d0" path="res://assets/buttons/Jumping_Squid-removebg-preview.png" id="1_3tdxt"]
+[ext_resource type="Texture2D" uid="uid://blmtd70ws4b7o" path="res://assets/buttons/btn_play-normal.png" id="2_bkyg6"]
+[ext_resource type="PackedScene" uid="uid://fpya2vs5r3p" path="res://scenes/bg_animated.tscn" id="2_h4ray"]
+[ext_resource type="Texture2D" uid="uid://bp52fsry65bgx" path="res://assets/buttons/btn_play-pressed.png" id="3_g236w"]
+[ext_resource type="Texture2D" uid="uid://bg5r36bxwskcx" path="res://assets/buttons/btn_quit-normal.png" id="4_7bktn"]
+[ext_resource type="PackedScene" uid="uid://dtwtvirw2568o" path="res://platforms/spring_platform.tscn" id="4_yuq2e"]
+[ext_resource type="PackedScene" uid="uid://bdr50pe3padqg" path="res://platforms/cloud_platform.tscn" id="5_ib1ne"]
+[ext_resource type="Texture2D" uid="uid://6n7k2ed24vtb" path="res://assets/buttons/btn_quit-pressed.png" id="5_u4h3h"]
+[ext_resource type="PackedScene" uid="uid://clun6tsmicvd0" path="res://players/fake_player.tscn" id="6_1jya5"]
+[ext_resource type="FontFile" uid="uid://gao58uknn2e2" path="res://fonts/Kenney Pixel Square.ttf" id="6_858v2"]
+[ext_resource type="PackedScene" uid="uid://bxxwcq5rrsk8t" path="res://actors/enemy.tscn" id="7_uqsp3"]
+[ext_resource type="PackedScene" uid="uid://dwqhqblneib4e" path="res://platforms/grass_platform.tscn" id="9_na048"]
+[ext_resource type="AudioStream" uid="uid://cak8rhpj7sxi8" path="res://sounds/bg_sound_loop.mp3" id="14_bs181"]
+
+[node name="Title_Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1vndc")
+
+[node name="Bg" parent="." instance=ExtResource("2_h4ray")]
+
+[node name="Enfeites" type="Node" parent="Bg"]
+
+[node name="Grass_Platform" parent="Bg/Enfeites" instance=ExtResource("9_na048")]
+position = Vector2(90, 295)
+
+[node name="Grass_Platform2" parent="Bg/Enfeites" instance=ExtResource("9_na048")]
+position = Vector2(142, 233)
+
+[node name="Spring_Platform" parent="Bg/Enfeites" instance=ExtResource("4_yuq2e")]
+position = Vector2(28, 199)
+
+[node name="Cloud_Platform" parent="Bg/Enfeites" instance=ExtResource("5_ib1ne")]
+position = Vector2(47, 258)
+
+[node name="Fake_player" parent="Bg/Enfeites" instance=ExtResource("6_1jya5")]
+position = Vector2(91, 253)
+
+[node name="Enemy" parent="." instance=ExtResource("7_uqsp3")]
+position = Vector2(128, 97)
+
+[node name="Main_Container_V" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Space" type="Label" parent="Main_Container_V"]
+layout_mode = 2
+
+[node name="Game_Title" type="TextureRect" parent="Main_Container_V"]
+custom_minimum_size = Vector2(120, 45)
+layout_mode = 2
+texture = ExtResource("1_3tdxt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Buttons_Container_H" type="HBoxContainer" parent="Main_Container_V"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Start_BTN" type="TouchScreenButton" parent="Main_Container_V/Buttons_Container_H"]
+position = Vector2(55, 52)
+texture_normal = ExtResource("2_bkyg6")
+texture_pressed = ExtResource("3_g236w")
+
+[node name="Quit_BTN" type="TouchScreenButton" parent="Main_Container_V/Buttons_Container_H"]
+position = Vector2(97, 52)
+texture_normal = ExtResource("4_7bktn")
+texture_pressed = ExtResource("5_u4h3h")
+
+[node name="High_Score" type="Label" parent="Main_Container_V"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_858v2")
+theme_override_font_sizes/font_size = 12
+text = "HIGHSCORE:"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_bs181")
+volume_db = -20.0
+autoplay = true
+
+[connection signal="pressed" from="Main_Container_V/Buttons_Container_H/Start_BTN" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="Main_Container_V/Buttons_Container_H/Quit_BTN" to="." method="_on_quit_btn_pressed"]
