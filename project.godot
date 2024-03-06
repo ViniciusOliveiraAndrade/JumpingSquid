@@ -12,9 +12,11 @@ config_version=5
 
 config/name="Jumping Squid"
 config/description="Jamping plaform game"
-run/main_scene="res://scenes/title_screen.tscn"
+run/main_scene="res://scenes/splash_screen.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.0901961, 0.690196, 0.890196, 0.631373)
+boot_splash/show_image=false
+boot_splash/main_scene="res://scenes/splash_screen.tscn"
 
 [autoload]
 

@@ -2,6 +2,7 @@ extends Control
 
 @onready var highscore := $Main_Container_V/High_Score as Label
 
+# color R:23 G:176 B:227 A:161
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	highscore.text = "HIGHSCORE\n" + str(Global.highscore)
