@@ -13,8 +13,7 @@ config_version=5
 config/name="Jumping Squid"
 config/description="Jamping plaform game"
 run/main_scene="res://scenes/splash_screen.tscn"
-config/features=PackedStringArray("4.1", "Mobile")
-boot_splash/bg_color=Color(0.0901961, 0.690196, 0.890196, 0.631373)
+config/features=PackedStringArray("4.2", "Mobile")
 boot_splash/show_image=false
 boot_splash/main_scene="res://scenes/splash_screen.tscn"
 
@@ -27,7 +26,6 @@ Global="*res://scripts/global.gd"
 window/size/viewport_width=180
 window/size/viewport_height=320
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_height"
 window/handheld/orientation=1
 
 [input_devices]
@@ -43,5 +41,6 @@ pointing/emulate_touch_from_mouse=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+limits/time/time_rollover_secs=30.0

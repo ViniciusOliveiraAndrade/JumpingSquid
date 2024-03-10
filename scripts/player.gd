@@ -6,7 +6,6 @@ var jump_force := 400
 var speed := 100
 
 @onready var animator := $Animator as AnimatedSprite2D
-@onready var screen_size = DisplayServer.window_get_size()
 
 @onready var grass_jump_fx := $Sounds/Grass_Jump_fx as AudioStreamPlayer
 @onready var cloud_jump_fx := $Sounds/Cloud_Jump_fx as AudioStreamPlayer
@@ -15,8 +14,8 @@ var speed := 100
 @onready var death_fx := $Sounds/Death_fx as AudioStreamPlayer
 
 func _ready():
-	screen_size = DisplayServer.window_get_size()
-
+	pass
+	
 func move(delta):
 	var input_direction = Input.get_axis("ui_left","ui_right")
 #	print(position)

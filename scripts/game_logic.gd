@@ -72,6 +72,7 @@ func score_update():
 func  _ready():
 	level_generator(20)
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta):
 	if player.position.y < camera.position.y:
 		camera.position.y = player.position.y

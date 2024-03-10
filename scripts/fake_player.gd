@@ -6,7 +6,6 @@ var jump_force := 400
 var speed := 100
 
 @onready var animator := $Animator as AnimatedSprite2D
-@onready var screen_size = DisplayServer.window_get_size()
 
 func move(delta):
 	var input_direction = 0
@@ -37,7 +36,7 @@ func move(delta):
 	
 func _physics_process(delta):
 	move(delta)
-	position.x = wrap(position.x, 0, screen_size.x)
+	position.x = wrap(position.x, 0, 180)
 	
 func die():
 #	get_tree().reload_current_scene()
