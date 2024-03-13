@@ -59,6 +59,7 @@ func delete_object(obstacle):
 		obstacle.die()
 		if Global.highscore < score:
 			Global.highscore = score
+			SaveLoadData.save_data()
 		if get_tree().change_scene_to_file("res://scenes/title_screen.tscn") != OK:
 			print("Não foi possivel voltar para tela inicial")
 	elif obstacle.is_in_group("platform") or obstacle.is_in_group("enemies"):

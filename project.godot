@@ -13,6 +13,8 @@ config_version=5
 config/name="Jumping Squid"
 config/description="Jamping plaform game"
 run/main_scene="res://scenes/splash_screen.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="JumpingSquidData"
 config/features=PackedStringArray("4.2", "Mobile")
 boot_splash/show_image=false
 boot_splash/main_scene="res://scenes/splash_screen.tscn"
@@ -20,6 +22,7 @@ boot_splash/main_scene="res://scenes/splash_screen.tscn"
 [autoload]
 
 Global="*res://scripts/global.gd"
+SaveLoadData="*res://scripts/save_load_data.gd"
 
 [display]
 
