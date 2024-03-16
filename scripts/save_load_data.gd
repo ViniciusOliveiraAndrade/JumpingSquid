@@ -1,34 +1,20 @@
 extends Node
 
+var playerData := PlayerData.new()
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	load_data()
+	verify_save_directory(Global.save_path)
+	
+func verify_save_directory(path : String):
+	DirAccess.make_dir_absolute(path)
 	
 func save_data():
-	var data ={
-		"highscore" : Global.highscore
-	}
-	var save_file = FileAccess.open(Global.save_path,FileAccess.WRITE)
-	var json_data = JSON.stringify(data)
-	save_file.store_line(json_data)
-	save_file.close()
-	#print("----")
-	#print(data)
-	#print("----")
+	playerData.highscore = Global.highscore
+	ResourceSaver.save(playerData, Global.save_path + playerData.save_name )
 	
 func load_data():
-	if not FileAccess.file_exists(Global.save_path):
+	if not FileAccess.file_exists(Global.save_path + playerData.save_name):
 		return
 	else:
-		var save_file = FileAccess.open(Global.save_path,FileAccess.READ)
-		while save_file.get_position() < save_file.get_length():
-			var data_saved = save_file.get_line()
-			var json_data = JSON.new()
-			json_data.parse(data_saved)
-			var data = json_data.get_data()
-			Global.highscore = data.highscore
-			#print("----")
-			#print(data.highscore)
-			#print("----")
-		save_file.close()
+		playerData = ResourceLoader.load(Global.save_path + playerData.save_name).duplicate(true)
+		Global.highscore = playerData.highscore

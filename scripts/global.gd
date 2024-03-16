@@ -3,7 +3,7 @@ extends Node
 var highscore := 0
 var lastscore := 0
 var scoreID 
-var save_path := "user://gamedata.save"
+var save_path := "user://save/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
