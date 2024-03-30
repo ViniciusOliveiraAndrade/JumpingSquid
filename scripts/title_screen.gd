@@ -12,3 +12,7 @@ func _on_start_btn_pressed():
 
 func _on_quit_btn_pressed():
 	get_tree().quit()
+
+func _on_credits_btn_pressed():
+	if get_tree().change_scene_to_file("res://scenes/credits_screen.tscn") != OK:
+		print("Algo deu errado e não conseguiu carregar tela de créditos")

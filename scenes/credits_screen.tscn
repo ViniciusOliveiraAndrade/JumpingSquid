@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf1rf7vm72hhl"]
+
+[ext_resource type="PackedScene" uid="uid://fpya2vs5r3p" path="res://scenes/bg_animated.tscn" id="1_r21fv"]
+
+[node name="Credits_Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bg" parent="." instance=ExtResource("1_r21fv")]
