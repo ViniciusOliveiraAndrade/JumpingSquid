@@ -151,7 +151,6 @@ shape = SubResource("RectangleShape2D_3f0tw")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_bs181")
 volume_db = -20.0
-autoplay = true
 
 [connection signal="pressed" from="Main_Container_V/Buttons_Container_H/Start_BTN" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="Main_Container_V/Buttons_Container_H/Quit_BTN" to="." method="_on_quit_btn_pressed"]

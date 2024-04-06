@@ -105,6 +105,5 @@ color = Color(0.0901961, 0.690196, 0.890196, 1)
 libraries = {
 "": SubResource("AnimationLibrary_soenq")
 }
-autoplay = "fade_out"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

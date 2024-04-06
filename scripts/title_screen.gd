@@ -5,6 +5,7 @@ extends Control
 # color R:23 G:176 B:227 A:161
 func _ready():
 	highscore.text = "HIGHSCORE\n" + str(Global.highscore)
+	$AudioStreamPlayer.play()
 	
 func _on_start_btn_pressed():
 	if get_tree().change_scene_to_file("res://scenes/jumping_squid.tscn") != OK:
