@@ -7,13 +7,14 @@ extends Node2D
 @onready var score_label := $Camera/Score as Label
 @onready var camera_start_position = $Camera.position.y
 
-
 @export var platform_scene : Array[PackedScene]
 
 var last_platform_is_cloud := false 
 var last_platform_is_enemy := false 
 var created_platform := 0
 var score := 0
+
+var title_scene = PackedScene
 
 func level_generator(amount):
 	for itens in amount:
@@ -60,8 +61,8 @@ func delete_object(obstacle):
 		if Global.highscore < score:
 			Global.highscore = score
 			SaveLoadData.save_data()
-		if get_tree().change_scene_to_file("res://scenes/title_screen.tscn") != OK:
-			print("Não foi possivel voltar para tela inicial")
+		TransitionScene.change_to_scene(title_scene)
+		
 	elif obstacle.is_in_group("platform") or obstacle.is_in_group("enemies"):
 		obstacle.queue_free()
 		level_generator(1)
@@ -71,7 +72,9 @@ func score_update():
 	score_label.text = str(score)
 	
 func  _ready():
+	title_scene = preload("res://scenes/title_screen.tscn")
 	level_generator(20)
+	BgAudio.play_music_level()
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta):

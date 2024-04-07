@@ -23,6 +23,8 @@ boot_splash/main_scene="res://scenes/splash_screen.tscn"
 
 Global="*res://scripts/global.gd"
 SaveLoadData="*res://scripts/save_load_data.gd"
+TransitionScene="*res://scenes/transition_scene.tscn"
+BgAudio="*res://scenes/bg_audio.tscn"
 
 [display]
 

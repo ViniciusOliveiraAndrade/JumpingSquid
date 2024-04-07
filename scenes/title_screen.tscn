@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c6rqobtgnqdrv"]
+[gd_scene load_steps=23 format=3 uid="uid://c6rqobtgnqdrv"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_1vndc"]
 [ext_resource type="Texture2D" uid="uid://dmw666qy0h2d0" path="res://assets/buttons/Jumping_Squid-removebg-preview.png" id="1_3tdxt"]
@@ -13,7 +13,6 @@
 [ext_resource type="FontFile" uid="uid://gao58uknn2e2" path="res://fonts/Kenney Pixel Square.ttf" id="6_858v2"]
 [ext_resource type="PackedScene" uid="uid://bxxwcq5rrsk8t" path="res://actors/enemy.tscn" id="7_uqsp3"]
 [ext_resource type="PackedScene" uid="uid://dwqhqblneib4e" path="res://platforms/grass_platform.tscn" id="9_na048"]
-[ext_resource type="AudioStream" uid="uid://cak8rhpj7sxi8" path="res://sounds/bg_sound_loop.mp3" id="14_bs181"]
 [ext_resource type="Texture2D" uid="uid://ccii05lej812u" path="res://assets/star.png" id="14_fgxli"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jpoul"]
@@ -63,7 +62,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 9.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f0tw"]
@@ -144,13 +143,10 @@ position = Vector2(163, 302)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_2p4px")
 autoplay = "default"
+frame_progress = 0.393597
 
 [node name="Credits_BTN" type="TouchScreenButton" parent="Main_Container_V/Star"]
 shape = SubResource("RectangleShape2D_3f0tw")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_bs181")
-volume_db = -20.0
 
 [connection signal="pressed" from="Main_Container_V/Buttons_Container_H/Start_BTN" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="Main_Container_V/Buttons_Container_H/Quit_BTN" to="." method="_on_quit_btn_pressed"]
